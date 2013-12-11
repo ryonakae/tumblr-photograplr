@@ -1,0 +1,152 @@
+@charset "utf-8";
+ 
+
+
+/* Body
+**************************************** */
+body {
+	font-family: $ff_base;
+	font-size: $fz_base;
+	line-height: $lh_base;
+	color: $c_base;
+	text-align: justify;
+	// word-break: break-all;
+	word-break: break-word;
+	background-color: $bgc_base;
+	@include linkStyle(noLine);
+	-webkit-text-size-adjust: none;
+}
+* {
+	@include box-sizing(border-box);
+}
+a {
+	cursor: pointer;
+}
+h1, h2, h3 {
+	// font-weight: bold;
+	font-family: $ff_bold;
+}
+
+
+
+/* z-index
+**************************************** */
+
+
+
+/* Header, Gloval Navigation
+**************************************** */
+header {
+	width: 100%;
+	height: $h_header;
+	padding: 0 30px 0 30px;
+	background-color: $bgc_base;
+	// background-color: rgba(255,255,255,0.8);
+	@include clearfix;
+	h1 {
+		float: left;
+		// display: inline-block;
+		font-size: $fz_h1;
+		line-height: $fz_h1;
+		margin-top: 25px;
+		color: $c_bold;
+		@include linkStyle(noLine, $c_bold, $c_hover);
+		// &.background--dark {
+		// 	color: $c_inverse;
+		// 	@include linkStyle(noLine, $c_inverse, $c_hover);
+		// }
+	}
+	nav {
+		// display: inline-block;
+		margin-left: 30px;
+		margin-top: 27px;
+		li {
+			display: inline-block;
+			font-size: $fz_sub;
+			margin-left: 15px;
+			&:first-child { margin-left: 0; }
+		}
+		&.glonav {
+			float: left;
+		}
+		&.pager {
+			float: right;
+		}
+	}
+  .follow {
+    float: right;
+    margin-left: 20px;
+    background-color: $c_key;
+    padding: 5px 10px;
+    @include border-radius(5px);
+    margin-top: 24px;
+    @include linkStyle(noLine, $c_inverse, $c_inverse);
+    @include hoverEffect;
+    font-size: $fz_sub;
+    a {
+      display: block;
+    }
+  }
+}
+
+// SmartPhone
+@media only screen and (min-width: 0px) and (max-width: ($w_base_tb + 30 * 2 - 1)) {
+	header {
+		padding: 0 10px 0 10px;
+		h1 {
+			// display: block;
+			float: none;
+			font-size: $fz_h1_sp;
+			margin-top: 15px;
+		}
+		nav {
+			// display: block;
+			margin-left: 0;
+			margin-top: 0;
+		}
+    .follow {
+      padding: 3px 10px;
+      margin-top: -29px;
+    }
+	}
+}
+
+
+
+/* Footer
+**************************************** */
+footer {
+	text-align: right;
+	padding: 5px 30px;
+	line-height: $lh_footer;
+	a {
+		font-weight: bold;
+	}
+	.copyright {
+		display: inline-block;
+		font-size: 10px;
+		color: $c_sub;
+	}
+}
+
+// SmartPhone
+@media only screen and (min-width: 0px) and (max-width: ($w_base_tb + 30 * 2 - 1)) {
+	footer {
+		padding: 10px;
+		.copyright, .credit {
+			display: block;
+		}
+		.copyright:after {
+			content: "";
+			margin: 0;
+		}
+	}
+}
+
+
+
+/* Tumblr Controls
+**************************************** */
+#tumblr_controls {
+	display: none !important;
+}

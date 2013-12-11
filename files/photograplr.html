@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# blog: http://ogp.me/ns/blog#">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0">
+	{block:Description}
+		<meta name="description" content="{MetaDescription}">
+	{/block:Description}
+	
+	<!-- User info -->
+	<meta name="text:Your Name" content="">
+	<meta name="text:Tumblr API Key" content="">
+	<meta name="text:Blog Domain" content="foo.tumblr.com">
+	<meta name="if:Show Exif" content="1">
+
+	<title>{block:PostTitle}{PostTitle} | {block:PostTitle}{Title}</title>
+
+	<link rel="stylesheet" href="//rawgithub.com/ryonakae/tumblr-themes/master/photograplr/files/style.css" type="text/css">
+	<link rel="shortcut icon" href="{Favicon}">
+	<link rel="alternate" type="application/rss+xml" href="{RSS}">
+	
+	<!-- OGP -->
+	<meta property="og:title" content="{block:PostTitle}{PostTitle} | {block:PostTitle}{Title}">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="{block:IndexPage}http://{text:Blog Domain}{/block:IndexPage}{block:PermalinkPage}{Permalink}{/block:PermalinkPage}">
+	<meta property="og:site_name" content="{Title}">
+	<meta property="og:description" content="{block:Description}{MetaDescription}{/block:Description}">
+	{block:PermalinkPage}
+		{block:Posts}
+			{block:Photo}
+				<meta property="og:image" content="{PhotoURL-400}">
+			{/block:Photo}
+		{/block:Posts}
+	{/block:PermalinkPage}
+	<meta property="og:image" content="{PortraitURL-128}">
+	<meta name="twitter:image" content="{PortraitURL-128}">
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="//rawgithub.com/ryonakae/tumblr-themes/master/photograplr/files/js/jquery.flicksimple.js"></script>
+	<script src="//rawgithub.com/ryonakae/tumblr-themes/master/photograplr/files/js/jquery.transit.min.js"></script>
+	<script src="//rawgithub.com/ryonakae/tumblr-themes/master/photograplr/files/js/jquery.mousewheel.min.js"></script>
+	<script src="//rawgithub.com/ryonakae/tumblr-themes/master/photograplr/files/js/jquery.tumblr_post_list.js"></script>
+	<script src="//rawgithub.com/ryonakae/tumblr-themes/master/photograplr/files/js/common.js"></script>
+	
+	<!--[if IE]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="//ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+		<script src="//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
+	
+	<script>
+		// 最近の記事を取得
+		jQuery(function(){
+			jQuery("body.single main .info .thumbnail").jq_tumblrPostList({
+				api_key: "{text:Tumblr API Key}",
+				domain: "{text:Blog Domain}", // 取得先となるTumblrサイトのドメイン
+				width: 150,//画像の横幅
+				limit: 3 // 記事の数
+			});
+		});
+	</script>
+	
+	<style>
+	    {CustomCSS}
+	</style>
+</head>
+
+
+{block:IndexPage}<body class="index">{/block:IndexPage}
+{block:PermalinkPage}<body class="single">{/block:PermalinkPage}
+{block:PostTitle}<body class="page">{/block:PostTitle}
+
+	<header>
+		<div class="wrapper">
+			<h1><a href="/">{Title}</a></h1>
+			<nav class="glonav">
+				<ul>
+					<li><a href="/about">About</a></li>
+					<li><a href="/archive">Archive</a></li>
+					<li><a href="{RSS}">RSS</a></li>
+				</ul>
+			</nav>
+      <div class="follow">
+        <a href="//www.tumblr.com/follow/ryo-photograplr" target="_blank">Follow</a>
+      </div>
+			{block:Pagination}
+				<nav class="pager">
+					<ul>
+						{block:NextPage}<li class="prev"><a href="{NextPage}">Prev</a></li>{/block:NextPage}
+						{block:PreviousPage}<li class="next"><a href="{PreviousPage}">Next</a></li>{/block:PreviousPage}
+					</ul>
+				</nav>
+			{/block:Pagination}
+			{block:PermalinkPagination}
+				<nav class="pager">
+					<ul>
+						{block:NextPost}<li class="prev"><a href="{NextPost}">Prev</a></li>{/block:NextPost}
+						{block:PreviousPost}<li class="next"><a href="{PreviousPost}">Next</a></li>{/block:PreviousPost}
+					</ul>
+				</nav>
+			{/block:PermalinkPagination}
+		</div>
+	</header>
+	
+	<main role="main">
+		{block:IndexPage}
+			<div class="main_wrapper">
+				<ul>
+					{block:Posts}
+						{block:Photo}
+							<li>
+								<article>
+									<div class="img"><a href="{Permalink}"><img src="{PhotoURL-1280}" alt="{PhotoAlt}"></a></div>
+									<div class="txt">
+										<p class="date">
+											<a href="{Permalink}">
+												{block:NewDayDate}{Year}.{MonthNumberWithZero}.{DayOfMonthWithZero}{/block:NewDayDate}
+												{block:SameDayDate}{Year}.{MonthNumberWithZero}.{DayOfMonthWithZero}{/block:SameDayDate}
+											</a>
+										</p>
+									</div>
+								</article>
+							</li>
+						{/block:Photo}
+					{/block:Posts}
+				</ul>
+			</div>
+		{/block:IndexPage}
+		{block:PermalinkPage}
+			{block:Posts}
+				{block:Photo}
+					<article>
+						<div class="img_wrapper">
+							<div class="entry_img"><img src="{PhotoURL-1280}" alt="{PhotoAlt}"></div>
+						</div>
+						
+						<div class="content_wrapper">
+							<div class="content_inner">
+								<div class="content">
+									<div class="btn">
+										<div class="reblog"><a href="{ReblogURL}"><span>Reblog</span></a></div>
+										<div class="love">{LikeButton}</div>
+									</div>
+									{block:Caption}
+										<div class="txt">{Caption}</div>
+									{/block:Caption}
+								</div>
+								<div class="info">
+									<aside>
+										<div class="box profile">
+											<div class="img"><a href="/"><img src="{PortraitURL-128}" alt="icon"></a></div>
+											<div class="txt">
+												<div class="name"><a href="/">{text:Your Name}</a></div>
+											</div>
+										</div>
+										{block:HasTags}
+											<div class="box tag">
+												<table>
+													<tr>
+														<th>Tag:</th>
+														<td>
+															{block:Tags}<a href="{TagURL}">{Tag}</a>{/block:Tags}
+														</td>
+													</tr>
+												</table>
+											</div>
+										{/block:HasTags}
+										{block:Exif}
+											<div class="box exif">
+												<table>
+													<tr>
+														<th>Uploaded</th>
+														<td>
+															{block:NewDayDate}{Year}.{MonthNumberWithZero}.{DayOfMonthWithZero}{/block:NewDayDate}
+															{block:SameDayDate}{Year}.{MonthNumberWithZero}.{DayOfMonthWithZero}{/block:SameDayDate}
+														</td>
+													</tr>
+													{block:Camera}
+														<tr>
+															<th>Camera</th><td>{Camera}</td>
+														</tr>
+													{/block:Camera}
+													{block:FocalLength}
+														<tr>
+															<th>Focal Length</th><td>{FocalLength}</td>
+														</tr>
+													{/block:FocalLength}
+													{block:Exposure}
+														<tr>
+															<th>Shutter Speed</th><td>{Exposure}</td>
+														</tr>
+													{/block:Exposure}
+													{block:Aperture}
+														<tr>
+															<th>Aperture</th><td>{Aperture}</td>
+														</tr>
+													{/block:Aperture}
+													{block:Iso}
+														<tr>
+															<th>ISO</th><td>{Iso}</td>
+														</tr>
+													{/block:Iso}
+												</table>
+											</div>
+										{/block:Exif}
+										<div class="box thumbnail"></div>
+									</aside>
+								</div>
+								{block:PostNotes}
+									<div class="notes">
+										<aside>
+											<h3><span>{NoteCount}</span> Notes</h3>
+											{PostNotes}
+										</aside>
+									</div>
+								{/block:PostNotes}
+							</div>
+						</div>
+					</article>
+				{/block:Photo}
+				{block:Text}
+					<article>
+						<div class="content_wrapper text">
+							<div class="content_inner">
+								<div class="content text">
+									{block:Title}<h2>{Title}</h2>{/block:Title}
+									<div class="body">{Body}</div>
+								</div>
+								<div class="info text">
+									<aside>
+										<div class="box profile">
+											<div class="img"><a href="/"><img src="{PortraitURL-128}" alt="icon"></a></div>
+											<div class="txt">
+												<div class="name"><a href="/">{text:Your Name}</a></div>
+											</div>
+										</div>
+										<div class="box thumbnail"></div>
+									</aside>
+								</div>
+							</div>
+						</div>
+					</article>
+				{/block:Text}
+			{/block:Posts}
+		{/block:PermalinkPage}
+	</main>
+	
+	<footer>
+		<div class="inner">
+      <p class="copyright">
+        <small>©2013 Photograplr.</small>
+        Designed by <a href="http://brdr.jp/" target="_blank">RYO NAKAE</a>
+       </p>
+		</div>
+	</footer>
+
+</body>
+
+</html>

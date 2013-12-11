@@ -1,0 +1,127 @@
+@charset "utf-8";
+
+
+
+// Variable
+// ========================================
+// !imgフォルダのパス
+$imgPath: "../img";
+
+// !fontフォルダのパス
+$fontPath: "../font";
+
+
+// !Webフォント
+@include font-face(
+	'Proxima Nova Regular', 
+	font-files(
+		'proximanova/proximanova_regular.woff', woff,
+		'proximanova/proximanova_regular.ttf', ttf
+	),
+	'proximanova/proximanova_regular.eot',
+	'normal',
+	'normal'
+);
+@include font-face(
+	'Proxima Nova Bold', 
+	font-files(
+		'proximanova/proximanova_bold.woff', woff,
+		'proximanova/proximanova_bold.ttf', ttf
+	),
+	'proximanova/proximanova_bold.eot',
+	'bold',
+	'normal'
+);
+
+
+// !フォントファミリー
+$ff_base: 'Proxima Nova Regular', Helvetica, 'Helvetica Neue', Verdana, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ ProN W3', 'HiraKakuProN-W3', 'メイリオ', Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS P Gothic', sans-serif;
+$ff_bold: 'Proxima Nova Bold', 'Helvetica Bold', 'Helvetica Neue Bold', 'Verdana Bold', 'Arial Bold', 'ヒラギノ角ゴ Pro W6', 'HiraKakuPro-W6', 'ヒラギノ角ゴ ProN W6', 'HiraKakuProN-W6', 'メイリオ ボールド', 'Meiryo Bold', 'Osaka Bold', 'ＭＳ Ｐゴシック', 'MS P Gothic', sans-serif;
+
+// 行間
+$lh_base: 1.9;
+$lh_ttl: 1.4;
+$lh_footer: 1.3;
+
+// フォントサイズ
+$fz_base: 12px;
+$fz_h1: 30px;
+$fz_h1_sp: 18px;
+$fz_sub: 10px;
+$fz_ttl: 22px;
+$fz_ttl_h3: 18px;
+$fz_ttl_sp: 14px;
+
+// 文字色
+$c_base: #333;
+$c_bold: #000;
+$c_sub: #999999;
+$c_link: #808080;
+$c_hover: #ff5a00;
+$c_inverse: #fff;
+
+// 要素の色
+$c_key: #ff8441; // キーカラー
+$bgc_base: #fff;
+$bgc_box: #f7f7f7;
+
+// 要素の幅や高さ
+$w_base_pc: 1000px;
+$w_base_tb: 768px - 30 * 2;
+$w_base_sp: 320px - 10 * 2;
+$w_base_pc_large: 1280px;
+
+$w_single_info_pc: 270px;
+
+$h_header: 80px;
+
+
+// Mixin
+// ========================================
+// リンクスタイル
+@mixin linkStyle($style:hoverLine, $c:$c_link, $c_hover:$c_hover) {
+	& a {
+		display: inline-block;
+		color: $c;
+		&:visited { color: $c; }
+		&:hover { color: $c_hover; }
+		
+		@include transition-duration(300ms);
+		@include transition-timing-function(ease);
+		@include transition-property(color);
+		
+		@if $style == hoverLine {
+			text-decoration: none;
+			&:hover { text-decoration: underline; }
+		}
+		@else if $style == linkLine {
+			text-decoration: underline;
+			&:hover { text-decoration: none; }
+		}
+		@else if $style == noLine {
+			text-decoration: none;
+			&:hover { text-decoration: none; }
+		}
+	}
+}
+
+// 画像置換
+@mixin textHide {
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	a {
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+}
+
+// ホバーエフェクト
+@mixin hoverEffect($speed:300ms, $opacity:0.7) {
+	&:hover {
+		opacity: $opacity;
+	}
+	@include transition-duration($speed);
+	@include transition-property(opacity);
+}

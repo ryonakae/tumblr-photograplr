@@ -1,0 +1,107 @@
+@charset "utf-8";
+ 
+
+
+/* Main
+**************************************** */
+body.index main {
+	width: 100%;
+	overflow: hidden;
+	cursor: move;
+	.main_wrapper {
+		ul {
+			width: 9999px; // example
+			display: inline-block;
+			font-size: 0;
+			vertical-align: top;
+			// margin-left: 10px;
+			// &:first-child { margin-left: 30px; }
+			li {
+				position: relative;
+				display: inline-block;
+				vertical-align: top;
+				// margin-left: 10px;
+				// &:first-child { margin-left: 0; }
+				padding-left: 10px;
+				&:first-child { padding-left: 0; }
+				.img {
+					// @include hoverEffect;
+					a {
+						cursor: inherit; // move
+					}
+					img {
+						width: auto;
+						// height: 100%;
+					}
+				}
+				.txt {
+					position: absolute;
+					bottom: 5px;
+					left: 8px;
+					padding-left: 10px;
+					line-height: $fz_sub;
+					// padding-top: 10px;
+					// padding-bottom: 20px;
+					/*
+					h2 {
+						font-size: $fz_ttl;
+						line-height: $lh_ttl;
+						color: $c_bold;
+						@include linkStyle(noLine, $c_bold, $c_hover);
+						a {
+							cursor: inherit; // move
+						}
+					}
+					*/
+					.date {
+						font-size: $fz_sub;
+						color: $c_inverse;
+						@include linkStyle(noLine, $c_sub, $c_hover);
+						a {
+							cursor: inherit; // move
+						}
+					}
+				}
+				&:first-child {
+					.txt {
+						padding-left: 0;
+					}
+				}
+			}
+		}
+	}
+}
+
+// SmartPhone
+@media only screen and (min-width: 0px) and (max-width: ($w_base_tb + 30 * 2 - 1)) {
+	body.index main {
+		.main_wrapper {
+			ul {
+				// &:first-child { margin-left: 10px; }
+				li {
+					.txt {
+						// padding-bottom: 10px;
+						h2 {
+							font-size: $fz_ttl_sp;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+/* footer
+**************************************** */
+body.index footer {
+	position: absolute;
+	bottom: 5px;
+	right: 8px;
+	line-height: $fz_sub;
+	padding: 0;
+	.copyright {
+		color: $c_inverse;
+	}
+}
