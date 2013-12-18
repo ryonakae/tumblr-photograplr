@@ -1,25 +1,22 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml">
+<head>
 
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# blog: http://ogp.me/ns/blog#">
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, maximum-scale=1.0">
+  
+  <title>{block:PostTitle}{PostTitle} | {block:PostTitle}{Title}</title>
+
 	{block:Description}
 		<meta name="description" content="{MetaDescription}">
 	{/block:Description}
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0">
 	
 	<!-- User info -->
 	<meta name="text:Your Name" content="">
 	<meta name="text:Tumblr API Key" content="">
-	<meta name="text:Blog Domain" content="foo.tumblr.com">
+	<meta name="text:Blog Domain" content="">
 	<meta name="if:Show Exif" content="1">
 
-	<title>{block:PostTitle}{PostTitle} | {block:PostTitle}{Title}</title>
-
-	<link rel="stylesheet" href="//rawgithub.com/ryonakae/tumblr-themes/master/photograplr/files/style.css" type="text/css">
-	<link rel="shortcut icon" href="{Favicon}">
-	<link rel="alternate" type="application/rss+xml" href="{RSS}">
-	
 	<!-- OGP -->
 	<meta property="og:title" content="{block:PostTitle}{PostTitle} | {block:PostTitle}{Title}">
 	<meta property="og:type" content="article">
@@ -35,19 +32,25 @@
 	{/block:PermalinkPage}
 	<meta property="og:image" content="{PortraitURL-128}">
 	<meta name="twitter:image" content="{PortraitURL-128}">
-
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-	<script src="//rawgithub.com/ryonakae/tumblr-themes/master/photograplr/files/js/jquery.flicksimple.js"></script>
-	<script src="//rawgithub.com/ryonakae/tumblr-themes/master/photograplr/files/js/jquery.transit.min.js"></script>
-	<script src="//rawgithub.com/ryonakae/tumblr-themes/master/photograplr/files/js/jquery.mousewheel.min.js"></script>
-	<script src="//rawgithub.com/ryonakae/tumblr-themes/master/photograplr/files/js/jquery.tumblr_post_list.js"></script>
-	<script src="//rawgithub.com/ryonakae/tumblr-themes/master/photograplr/files/js/common.js"></script>
-	
+  
+	<link rel="stylesheet" href="//rawgithub.com/ryonakae/tumblr-photograplr/master/files/style.css" type="text/css">
+	<link rel="shortcut icon" href="{Favicon}">
+	<link rel="alternate" type="application/rss+xml" href="{RSS}">
+  
 	<!--[if IE]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<script src="//ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
 		<script src="//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="//rawgithub.com/ryonakae/tumblr-photograplr/master/files/js/jquery.flicksimple.js"></script>
+	<script src="//rawgithub.com/ryonakae/tumblr-photograplr/master/files/js/jquery.transit.min.js"></script>
+	<script src="//rawgithub.com/ryonakae/tumblr-photograplr/master/files/js/jquery.mousewheel.min.js"></script>
+	<script src="//rawgithub.com/ryonakae/tumblr-photograplr/master/files/js/jquery.tumblr_post_list.js"></script>
+	<script src="//rawgithub.com/ryonakae/tumblr-photograplr/master/files/js/common.js"></script>
+	
+
 	
 	<script>
 		// 最近の記事を取得
